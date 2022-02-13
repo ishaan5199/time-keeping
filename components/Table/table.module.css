@@ -1,8 +1,5 @@
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
-.container{
-    height: 80vh;
-}
 .table{
     background-color: rgb(0, 0, 0);
     text-align: center;
@@ -23,6 +20,8 @@
     text-align: center;
     color:#ffc089;
     font-size: 1.2rem;
+    position: relative;
+    margin: 0 0 2rem 0;
 }
 .pagination button{
     border: none;
