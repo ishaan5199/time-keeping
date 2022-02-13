@@ -1,9 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useTable, usePagination, useSortBy, useGlobalFilter, useAsyncDebounce } from "react-table";
 import { GlobalFilter } from "../GlobalFilter/GlobalFilter";
 import { Tab, Table } from "react-bootstrap";
 import styles from "./table.module.css";
-import { RiArrowUpLine, RiArrowDownLine, RiArrowLeftLine, RiArrowRightLine } from "react-icons/ri";
+import { RiArrowUpLine, RiArrowDownLine, RiArrowLeftLine, RiArrowRightLine, RiVipCrownFill } from "react-icons/ri";
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 
 const TableStructure = ({ columns, data }) => {
@@ -44,6 +44,20 @@ const TableStructure = ({ columns, data }) => {
 		useSortBy,
 		usePagination,
 	)
+	
+	const [top, setTop] = useState([]);
+
+	useEffect(() => {
+		var top1 = document.getElementsByClassName("table")[0].rows[1].cells[0];
+		var top2 = document.getElementsByClassName("table")[0].rows[2].cells[0];
+		var top3 = document.getElementsByClassName("table")[0].rows[3].cells[0];
+		
+		if(pageIndex == 0){
+			top1.textContent = "👑 " + top1.textContent; 
+			top2.textContent = "👑 " + top2.textContent; 
+			top3.textContent = "👑 " + top3.textContent; 
+		}
+	}, [pageIndex]);
 
   	return (
 		<>
@@ -69,11 +83,12 @@ const TableStructure = ({ columns, data }) => {
       			  		))}
       				</thead>
       				<tbody {...getTableBodyProps()}>
-      			  		{page.map((row, i) => {
-      			  	  		prepareRow(row)
+      			  		{
+							page.map((row, i) => {
+      			  	  		prepareRow(row)								  
       			  	  		return (
       			  	  	  		<tr key = {i} {...row.getRowProps()}>
-      			  	  	  	  		{row.cells.map(cell => {
+      			  	  	  	  		{row.cells.map((cell, i) => {
       			  	  	  	  	  		return <td key = {i} {...cell.getCellProps()}>{cell.render('Cell')}</td>
       			  	  	  	  		})}										  
       			  	  	  		</tr>
@@ -116,7 +131,7 @@ const TableStructure = ({ columns, data }) => {
         		</select>
       		</div>
 		</>
-  	)
+  	)  
 }
 
 export default TableStructure
