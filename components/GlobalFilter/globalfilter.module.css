@@ -1,0 +1,15 @@
+.container{
+    margin: 2rem 0 0 0;
+    text-align: center;
+    color:#ffc089;
+}
+.search{
+    border: none;
+    text-align: center;
+    border-bottom: solid 0.1rem #ffc089;
+    outline: none;
+    color:#ffc089;
+}
+.search:focus{
+    border-bottom-color: #f8e6d6;;
+}
