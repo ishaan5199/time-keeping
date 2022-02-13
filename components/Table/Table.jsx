@@ -44,20 +44,6 @@ const TableStructure = ({ columns, data }) => {
 		useSortBy,
 		usePagination,
 	)
-	
-	const [top, setTop] = useState([]);
-
-	useEffect(() => {
-		var top1 = document.getElementsByClassName("table")[0].rows[1].cells[0];
-		var top2 = document.getElementsByClassName("table")[0].rows[2].cells[0];
-		var top3 = document.getElementsByClassName("table")[0].rows[3].cells[0];
-		
-		if(pageIndex == 0){
-			top1.textContent = "👑 " + top1.textContent; 
-			top2.textContent = "👑 " + top2.textContent; 
-			top3.textContent = "👑 " + top3.textContent; 
-		}
-	}, [pageIndex]);
 
   	return (
 		<>
@@ -84,12 +70,12 @@ const TableStructure = ({ columns, data }) => {
       				</thead>
       				<tbody {...getTableBodyProps()}>
       			  		{
-							page.map((row, i) => {
+							page.map((row, outer) => {
       			  	  		prepareRow(row)								  
       			  	  		return (
-      			  	  	  		<tr key = {i} {...row.getRowProps()}>
+      			  	  	  		<tr key = {outer} {...row.getRowProps()}>
       			  	  	  	  		{row.cells.map((cell, i) => {
-      			  	  	  	  	  		return <td key = {i} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+      			  	  	  	  	  		return <td key = {i} {...cell.getCellProps()}>{outer >=0 && outer <= 2 && i == 0 && pageIndex == 0 && !state.globalFilter ? <RiVipCrownFill color = {"#ffc400"}/> : ""}&emsp;{cell.render('Cell')}</td>
       			  	  	  	  		})}										  
       			  	  	  		</tr>
       			  	  		)
