@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import axios from 'axios';
 import styles from '../styles/Home.module.css';
 import TableStructure from '../components/Table/Table';
+import Header from "../components/Header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home({stuDataArray}) {
@@ -32,7 +33,12 @@ export default function Home({stuDataArray}) {
 
   	return (
   	  	<div className={styles.container}>
-				<TableStructure columns = {columns} data = {stuDataArray}/>
+            <Head>
+                <title>Time-Keeping</title>
+                <link rel="icon" href="/betaLabs.webp" />
+            </Head>
+            <Header />
+			<TableStructure columns = {columns} data = {stuDataArray}/>
   	  	</div>
   	)
 }
@@ -65,7 +71,7 @@ export async function getStaticProps() {
 	  	props: {
 			stuDataArray,
 	  	},
-		revalidate: 5,  
+		revalidate: 10,  
 	}
 	
 }

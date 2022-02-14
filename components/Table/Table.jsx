@@ -75,7 +75,7 @@ const TableStructure = ({ columns, data }) => {
       			  	  		return (
       			  	  	  		<tr key = {outer} {...row.getRowProps()}>
       			  	  	  	  		{row.cells.map((cell, i) => {
-      			  	  	  	  	  		return <td key = {i} {...cell.getCellProps()}>{outer >=0 && outer <= 2 && i == 0 && pageIndex == 0 && !state.globalFilter ? <RiVipCrownFill color = {"#ffc400"}/> : ""}&emsp;{cell.render('Cell')}</td>
+      			  	  	  	  	  		return <td key = {i} {...cell.getCellProps()}>{outer >=0 && outer <= 2 && i == 0 && pageIndex == 0 && !state.globalFilter && (state.sortBy.length === 1 && state.sortBy[0].id == "hours" && state.sortBy[0].desc == true) ? <RiVipCrownFill color = {"#ffc400"}/> : ""}&emsp;{cell.render('Cell')}</td>
       			  	  	  	  		})}										  
       			  	  	  		</tr>
       			  	  		)
